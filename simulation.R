@@ -1,5 +1,5 @@
 Independence="Independence"; Pairwise="Pairwise"; Toeplitz="Toeplitz"
-setwd("C:/Users/fanw/Desktop/high_dimensional_comparison")
+setwd(settings_directory) ########directory containing "SETTINGS.txt"##########
 settings=as.vector(as.matrix(read.table("SETTINGS.txt",head=FALSE)))
 setting=settings[1]
 
@@ -18,7 +18,7 @@ for(name in method_name) {assign(sprintf("%s_list",name),list())}
 
 
 
-setwd("C:/Users/fanw/Desktop/high_dimensional_comparison")
+setwd(script_directory)  #######directory containing "data_generation.R"##########
 source("data_generation.R")
 niter=1     
 
