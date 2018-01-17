@@ -1,7 +1,8 @@
 Independence="Independence"; Pairwise="Pairwise"; Toeplitz="Toeplitz"
 setwd(settings_directory) ########directory containing "SETTINGS.txt"##########
 settings=as.vector(as.matrix(read.table("SETTINGS.txt",head=FALSE)))
-setting=settings[1]
+setting=settings[1]    
+#########The user can choose any settings in the list, or provide their own applicable settings using the same format#######
 
 library(MASS)                       
 library(glmnet)
