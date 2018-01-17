@@ -348,8 +348,6 @@ for(j in 1:length(lambda_seq))            #####for each possible regularization 
 
 
 lambda.min=lambda_seq[match(min(MSE_SEQ),MSE_SEQ)]
-cvm=MSE_SEQ
-cvsd=MSE_SD_SEQ
 dantzig$run.time=run_time
 
 lambda.min_idx=which.min(abs(lambda_seq-lambda.min))
@@ -360,7 +358,6 @@ tp=sum(beta.cv!=0 & beta0!=0)
 fp=sum(beta.cv!=0 & beta0==0)
 tn=sum(beta.cv==0 & beta0==0)
 fn=sum(beta.cv==0 & beta0!=0)
-if(tp+fp+tn+fn!=p) {warning("wrong tp/fp/tn/fn!")}
 if((tp+fp)==0) {mcc=0;ppv=0}
 if((tp+fp)!=0){mcc=((tp*tn-fp*fn)/p)/sqrt((tp+fp)*(tp+fn)/p^2*(tn+fp)*(tn+fn));ppv=tp/(tp+fp)}
 tpr=tp/(tp+fn)
