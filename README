@@ -9,7 +9,7 @@ Partial Area Under the Curve (pAUC), Root Mean Square Error (RMSE), True Positiv
 
 User first chooses a setting from settings listed in "SETTINGS.txt" (or provide a setting in the same format which is applicable). Pass the setting to "data_generation" function to generate training and test data accordingly. Using the data generated, one can apply different penalised regression methods to obtain the metrics for ranking, prediction and seleciton, using the script "simulation.R".
 
-The results in "results" folder are obtained as described above, named after the metrics and the settings; each individual file contains 64 metric values of a method in a simulation setting, over 64 replications
+The results in "results.7z" zip file are obtained as described above, named after the metrics and the settings; each individual file contains 64 metric values of a method in a simulation setting, over 64 replications
 
 
 
