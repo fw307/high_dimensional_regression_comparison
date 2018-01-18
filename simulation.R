@@ -305,7 +305,7 @@ scad_list[[iter]]=scad
 
 #######################################################Dantzig Selector#####################################
 dantzig=list()
-nlambda=10    ######number of lambda we try for finding the optimal one#####
+nlambda=100    ######number of lambda we try for finding the optimal one#####
 ptm=proc.time()
 dantzig_run=slim(X=X,Y=Y,method="dantzig",nlambda=nlambda,verbose=FALSE,lambda.min.ratio=0.01)
 run_time=proc.time()-ptm
@@ -313,7 +313,7 @@ run_time=proc.time()-ptm
 solution_path=Matrix(dantzig_run$beta,sparse=TRUE)
 colnames(solution_path)=dantzig_run$lambda
 
-#############k-fold cross-validation for each item of lambda_seq######
+#############k-fold cross-validation for each value of lambda_seq######
 lambda_seq=dantzig_run$lambda
 MSE_SEQ=c()   #####mean cross-validated MSE for each possible regularization level (lambda)######
 MSE_SD_SEQ=c() #####Corresponding standard errors##########
@@ -325,7 +325,7 @@ x=seq_along(samples)
 groups=split(samples,ceiling(x/max))   #####k groups(equal sizes) samples#####
 for(i in 1:length(groups)){assign(sprintf("idx_%s",i),groups[[i]])}    
 
-for(j in 1:length(lambda_seq))            #####for each possible regularization level#####
+for(j in 1:length(lambda_seq))          
 {
   lambda=lambda_seq[j]
   mse=c()
