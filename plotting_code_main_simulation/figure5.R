@@ -1,4 +1,4 @@
-setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
+setwd(results)        ######results is the folder for results of all settings######
 all_folders=list.files(); Independence="Independence"; Pairwise="Pairwise"; Toeplitz="Toeplitz"
 ALL_METHODS=c("lasso","henet","ridge","scad","stability")
 
