@@ -2,7 +2,7 @@ par(mar=c(2.5,2.5,2,2.4))
 par(oma=c(2,3.5,2,2.4))
 par(mgp=c(2,1,0))  
 
-setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
+setwd(results)        ######results is the folder for results of all settings######
 all_folders=list.files()
 rho_seq=c(0,0.5,0.7,0.9)
 s0_B_seq=c(1,5)
