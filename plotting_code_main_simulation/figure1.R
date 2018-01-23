@@ -6,7 +6,7 @@ figure.count=1
 dev.off()
 par(mar=c(3.5,3.5,1,1))
 par(oma=c(2,1,1,1))
-setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
+setwd(results)        ######results is the folder for results of all settings######
 all_folders=list.files();Independence="Independence";target.snr=2
 all_independence_folders=all_folders[grep("Independence",all_folders)]
 independence_settings=all_independence_folders[grep(sprintf("SNR=%s",target.snr),all_independence_folders)]
