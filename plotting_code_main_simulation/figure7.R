@@ -1,7 +1,7 @@
 par(mar=c(2.5,2.5,2.5,2.4))
 par(oma=c(2,3.5,2,2.4))
 par(mgp=c(2,1,0))  
-setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
+setwd(results)        ######results is the folder for results of all settings######
 all_folders=list.files()
 
 
