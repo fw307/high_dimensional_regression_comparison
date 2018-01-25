@@ -1,9 +1,9 @@
 par(mar=c(2.5,2.5,2,2.4))
 par(oma=c(2,3.5,2,2.4))
 par(mgp=c(2,1,0))  
-
 setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
 all_folders=list.files()
+
 rho_seq=c(0,0.5,0.7,0.9)
 s0_B_seq=c(1,5)
 pB_seq=c(10,100)
@@ -47,8 +47,8 @@ par(mfrow=c(4,4))
 
           eval(parse(text=setting)); SNR=SNR.adjust
           lty=lty_seq[match(setting,setting_seq)]
- if(p==1000){method_seq=method_seq.all;colors=colors.all}
- if(p!=1000){method_seq=method_seq.partial;colors=colors.partial}
+ if(p<=1000){method_seq=method_seq.all;colors=colors.all}
+ if(p>1000){method_seq=method_seq.partial;colors=colors.partial}
  
            for(method in method_seq)
        {
@@ -64,16 +64,9 @@ par(mfrow=c(4,4))
                                                              factorY1=get(load(sprintf("%s_%s_%s.Rdata",metric1,method,setting)))
                                                              factorY2=get(load(sprintf("%s_%s_%s.Rdata",metric2,method,setting)))
                                                              col=colors[match(method,method_seq)];main=sprintf("%s: s0B=%s, pB=%s",LETTERS[figure.count],s0_B,pB) 
-
-                                                             if(figure.count==1 | figure.count==5) main=sprintf("n=%s,SNR=%s \n%s: s0B=%s,pB=%s",n,SNR,LETTERS[figure.count],s0_B,pB) 
                                                              mean.factorY1=mean(factorY1); mean.factorY2=mean(factorY2);sd.factorY1=sd(factorY1); sd.factorY2=sd(factorY2)
                                                              factorY1_seq[match(rho,rho_seq)]=mean.factorY1; factorY2_seq[match(rho,rho_seq)]=mean.factorY2
-
-
-xlab=toupper(metric1);ylab=toupper(metric2)
-if(length(grep("pauc",metric1))>0){xlab="pAUC"}; if(length(grep("rmse",metric1))>0){xlab="RMSE"}; if(length(grep("smse",metric1))>0){xlab="SMSE"};if(length(grep("mcc",metric1))>0){xlab="MCC"};if(length(grep("tpr",metric1))>0){xlab="TPR"};if(length(grep("fscore",metric1))>0){xlab="F"} 
-if(length(grep("pauc",metric2))>0){ylab="pAUC"}; if(length(grep("rmse",metric2))>0){ylab="RMSE"}; if(length(grep("smse",metric2))>0){ylab="SMSE"};if(length(grep("mcc",metric2))>0){ylab="MCC"};if(length(grep("tpr",metric2))>0){ylab="TPR"};if(length(grep("fscore",metric2))>0){ylab="F"};
-
+xlab="TPR"; ylab="PPV"
 
                                                              plot(factorY1_seq,factorY2_seq,xlim=c(0,1),ylim=c(0,1),col=col,main="",xlab="",ylab="",pch=pch_seq,lty=lty,xaxt="n",yaxt="n")
                                                              lines(factorY1_seq,factorY2_seq,col=col,lty=lty)
@@ -111,20 +104,6 @@ mtext(text=LETTERS[figure.count],side=3,adj=0,cex=1)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  for(SNR.adjust in SNR_seq)
 {
 
@@ -136,8 +115,8 @@ mtext(text=LETTERS[figure.count],side=3,adj=0,cex=1)
            setting=setting_seq[2]
  
           eval(parse(text=setting)); SNR=SNR.adjust
-          if(p==1000){method_seq=method_seq.all;colors=colors.all}
-          if(p!=1000){method_seq=method_seq.partial;colors=colors.partial}
+          if(p<=1000){method_seq=method_seq.all;colors=colors.all}
+          if(p>1000){method_seq=method_seq.partial;colors=colors.partial}
           lty=lty_seq[match(setting,setting_seq)]
 
            for(method in method_seq)
@@ -155,8 +134,6 @@ mtext(text=LETTERS[figure.count],side=3,adj=0,cex=1)
                                                              factorY1=get(load(sprintf("%s_%s_%s.Rdata",metric3,method,setting)))
                                                              factorY2=get(load(sprintf("%s_%s_%s.Rdata",metric4,method,setting)))
                                                              col=colors[match(method,method_seq)];main=sprintf("%s: s0B=%s,pB=%s",LETTERS[figure.count],s0_B,pB) 
-
-                                                             if(figure.count==9 | figure.count==13) main=sprintf("n=%s,SNR=%s  \n%s: s0B=%s,pB=%s",n,SNR,LETTERS[figure.count],s0_B,pB) 
                                                              mean.factorY1=mean(factorY1); mean.factorY2=mean(factorY2);sd.factorY1=sd(factorY1); sd.factorY2=sd(factorY2)
                                                              factorY1_seq[match(rho,rho_seq)]=mean.factorY1; factorY2_seq[match(rho,rho_seq)]=mean.factorY2
 
@@ -179,14 +156,10 @@ mtext(text=LETTERS[figure.count],side=3,adj=0,cex=1)
 }
 mtext(text=bquote(bold('p'^'B' == 10)),at=0.25,side=3,outer=T,cex=1,font=2,line=0.2)  
 mtext(text=bquote(bold('p'^'B' == 100)),at=0.75,side=3,outer=T,cex=1,font=2,line=0.2)  
-
 mtext(gsub(";","\n",setting_seq[1]),at=0.75,side=2,outer=T,cex=1,font=2,las=2,line=-1.2)  
 mtext(gsub(";","\n",setting_seq[2]),at=0.25,side=2,outer=T,cex=1,font=2,las=2,line=-1.2)  
 
 
-all_methods_text=paste(method_seq,collapse=",") 
-main=sprintf("Pairwise correlation,n=%s,p=%s,s0=%s,SNR=%s",n,p,s0,SNR) 
-MAIN=main
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
-legend("bottom",method_seq.all,xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
+legend("bottom",c("Lasso","HENet","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
 legend("bottomleft",legend=paste("rho",rho_seq,sep="="),cex=0.9,pch=pch_seq,xpd=TRUE,horiz=FALSE,inset=c(0,0))
