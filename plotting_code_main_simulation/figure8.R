@@ -95,22 +95,6 @@ if(!(method=="dantzig" & p>1000))            arrows(x0=rho_seq.adjusted,y0=pmax(
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  for(SNR.adjust in SNR_seq)
 {
     for(pB in pB_seq)
@@ -174,4 +158,4 @@ all_methods_text=paste(method_seq,collapse=",")
 main=sprintf("Pairwise correlation,n=%s,p=%s,s0=%s,SNR=%s",n,p,s0,SNR) 
 MAIN=main
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
-legend("bottom",method_seq.all,xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
+legend("bottom",c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
