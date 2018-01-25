@@ -25,7 +25,7 @@ colors.all=colors_all[-2]
 method_seq.partial=method_seq_all[-c(2,5)]
 colors.partial=colors_all[-c(2,5)]
 
-metric="pauc"; Independence="Independence"; Pairwise="Pairwise";YLIM=c(0,1)
+metric="pauc"; Independence="Independence";YLIM=c(0,1)
 pch_seq=c(0,2,5);lty_seq=c(5,3,1)
 figure.count=1
 par(mfrow=c(4,4))
@@ -42,8 +42,8 @@ par(mfrow=c(4,4))
 
           eval(parse(text=setting)); SNR=SNR.adjust
           lty=lty_seq[match(setting,setting_seq)]
- if(p==1000){method_seq=method_seq.all;colors=colors.all}
- if(p!=1000){method_seq=method_seq.partial;colors=colors.partial}
+ if(p<=1000){method_seq=method_seq.all;colors=colors.all}
+ if(p>1000){method_seq=method_seq.partial;colors=colors.partial}
  main=bquote(bold('s'[0]^'B' == .(s0_B) ~ ',' ~ 'p'^'B'== .(pB)))
 
  
@@ -95,22 +95,6 @@ if(!(method=="dantzig" & p>1000))            arrows(x0=rho_seq.adjusted,y0=pmax(
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  for(SNR.adjust in SNR_seq)
 {
     for(pB in pB_seq)
@@ -120,8 +104,8 @@ if(!(method=="dantzig" & p>1000))            arrows(x0=rho_seq.adjusted,y0=pmax(
           setting=setting_seq[2]
           eval(parse(text=setting)); SNR=SNR.adjust
           lty=lty_seq[match(setting,setting_seq)]
-          if(p==1000){method_seq=method_seq.all;colors=colors.all}
-          if(p!=1000){method_seq=method_seq.partial;colors=colors.partial}
+          if(p<=1000){method_seq=method_seq.all;colors=colors.all}
+          if(p>1000){method_seq=method_seq.partial;colors=colors.partial}
           main=bquote(bold('s'[0]^'B' == .(s0_B) ~ ',' ~ 'p'^'B'== .(pB)))
 
  
@@ -160,12 +144,6 @@ if(!(method=="dantzig" & p>1000))            arrows(x0=rho_seq.adjusted,y0=pmax(
  }
 }
 
-
-
-
-
-
-
 mtext(text=bquote(bold('p'^'B' == 10)),at=0.25,side=3,outer=T,cex=1,font=2,line=0.2)  
 mtext(text=bquote(bold('p'^'B' == 100)),at=0.75,side=3,outer=T,cex=1,font=2,line=0.2)  
 
@@ -177,5 +155,4 @@ all_methods_text=paste(method_seq,collapse=",")
 main=sprintf("Pairwise correlation,n=%s,p=%s,s0=%s,SNR=%s",n,p,s0,SNR) 
 MAIN=main
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
-legend("bottom",method_seq.all,xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
-legend("bottomleft",legend=paste("rho",rho_seq,sep="="),cex=0.9,pch=pch_seq,xpd=TRUE,horiz=FALSE,inset=c(0,0))
+legend("bottom",c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
