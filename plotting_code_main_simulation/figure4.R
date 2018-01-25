@@ -1,8 +1,9 @@
 setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
 all_folders=list.files(); Independence="Independence"; Pairwise="Pairwise"; Toeplitz="Toeplitz"
 ALL_METHODS=c("lasso","henet","ridge","scad","stability")
-target.snr=4
-LIM.rmse=c(0,25)
+
+target.snr=2
+LIM.rmse=c(0,28)
 
 
 independence.list=c()
@@ -21,6 +22,11 @@ toeplitz.list=c()
   if(Design=="Toeplitz" & pB==10 & s0_B==2 & rho==0.7 & SNR==target.snr) {toeplitz.list=c(toeplitz.list,folder)}
 }
 metric_seq=c("pauc","rmse","tpr","ppv","mcc"); 
+
+
+
+
+
 
 r_seq.independence=c()
 
@@ -91,10 +97,6 @@ identity.array=unique(factor.array)
   }
 
 identity.array.pairwise=identity.array 
-
-
-
-
 
 
 
@@ -177,7 +179,7 @@ mtext(text=LETTERS[indicator],side=3,adj=0,cex=1)
 
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
 legend(legend=c("0<r<=1", "1<r<=2","2<r<=3","r>3"),xpd=TRUE,horiz=TRUE,inset=c(0,0),pch=1:4,bty="n",cex=1.5,x=-0.5,y=-0.8)
-legend(legend=method_seq_all,xpd=TRUE,horiz=TRUE,inset=c(0,0),col=colors,pch=15,bty="n",cex=1.3,x=-0.68,y=-0.9)
+legend(legend=c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),col=colors,pch=15,bty="n",cex=1.3,x=-0.68,y=-0.9)
 
 
 
