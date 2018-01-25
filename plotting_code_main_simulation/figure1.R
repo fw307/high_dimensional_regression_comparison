@@ -1,4 +1,3 @@
-setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
 method_seq_all=c("lasso","lenet","henet","ridge","dantzig","scad","stability")
 library(RColorBrewer);colors_all=(brewer.pal(length(method_seq_all),"Set1"));colors_all[1]="red";colors_all[5]="black";colors_all[6]="gold3";colors_all[7]="brown"
 colors_all=colors_all[c(1,4,3,6,2,5,7)]
@@ -6,6 +5,7 @@ figure.count=1
 
 par(mar=c(3.5,3.5,1,1))
 par(oma=c(2,1,1,1))
+setwd(sorted_address)        ######sorted_address is the folder for results of all settings######
 all_folders=list.files();Independence="Independence";target.snr=2
 all_independence_folders=all_folders[grep("Independence",all_folders)]
 independence_settings=all_independence_folders[grep(sprintf("SNR=%s",target.snr),all_independence_folders)]
@@ -23,9 +23,9 @@ metric_seq=c("pauc","rmse","tpr","ppv")
 
      for(metric in metric_seq)
 {
-     if(length(grep("tpr",metric))>0){method_seq=c("lasso","lenet","henet","dantzig","scad","stability");colors=colors_all[-match("ridge",method_seq_all)];M=1;pch=1}
-     if(length(grep("pauc",metric))>0) {method_seq=c("lasso","lenet","henet","ridge","dantzig","scad","stability");colors=colors_all;M=1;pch=1}
-     if(length(grep("mse",metric))>0) {method_seq=c("lasso","lenet","henet","ridge","dantzig","scad");colors=colors_all[-match("stability",method_seq_all)];M=22;pch=1}
+     if(metric=="tpr" | metric=="ppv"){method_seq=c("lasso","lenet","henet","dantzig","scad","stability");colors=colors_all[-match("ridge",method_seq_all)];M=1;pch=1}
+     if(metric=="pauc") {method_seq=c("lasso","lenet","henet","ridge","dantzig","scad","stability");colors=colors_all;M=1;pch=1}
+     if(metric=="rmse") {method_seq=c("lasso","lenet","henet","ridge","dantzig","scad");colors=colors_all[-match("stability",method_seq_all)];M=22;pch=1}
    
        for(method in method_seq)
   {
@@ -45,11 +45,14 @@ metric_seq=c("pauc","rmse","tpr","ppv")
      }
        order=order(unique.r.values)
        ylab=toupper(metric)
-       if(length(grep("pauc",metric))>0) {ylab="pAUC"}; if(length(grep("rmse",metric))>0) {ylab="RMSE"}; if(length(grep("smse",metric))>0) {ylab="SMSE"}; if(length(grep("tpr",metric))>0) {ylab="TPR"}
+       if(metric=="pauc") {ylab="pAUC"}; if(metric=="rmse") {ylab="RMSE"}
        plot(unique.r.values,metric_vec,xlim=c(0,5),ylim=c(0,M),xlab="",ylab="",main="",col=col,pch=pch)
 mtext(side=1, text="r", line=2)
 mtext(side=2, text=ylab, line=2)
 mtext(text=LETTERS[figure.count],side=3,adj=0,cex=1.5)
+
+
+
        lines(unique.r.values[order],metric_vec[order],col=col)
        par(new=TRUE)
   }
