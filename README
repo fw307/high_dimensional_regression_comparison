@@ -11,6 +11,6 @@ User first chooses a setting from settings listed in "SETTINGS.txt" (or provide 
 
 The results in "results.7z" zip file are obtained as described above, named after the metrics and the settings (specifically, in the "metric_method_setting.Rdata" format); each individual file contains 64 metric values of a method in a simulation setting, over 64 replications
 
-
+"plotting_code_main_simulation" folder contains scripts for generating Figures 1-10 for systematic simulation section in the paper, named after their figure numbers.
 
 
