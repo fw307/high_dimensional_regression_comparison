@@ -122,8 +122,8 @@ metric_seq=c("pauc","rmse","tpr","ppv")
 
 
 
-par(mar=c(4,3,1,1))
-par(oma=c(4,1,2,1))
+par(mar=c(3,3,1,1))
+par(oma=c(3.6,1,1,1))
 
                               for(indicator in 1:4)                     
 {
@@ -177,9 +177,9 @@ mtext(text=LETTERS[indicator],side=3,adj=0,cex=1)
 
 }
 
-par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
-legend(legend=c("0<r<=1", "1<r<=2","2<r<=3","r>3"),xpd=TRUE,horiz=TRUE,inset=c(0,0),pch=1:4,bty="n",cex=1.5,x=-0.5,y=-0.8)
-legend(legend=c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),col=colors,pch=15,bty="n",cex=1.3,x=-0.68,y=-0.9)
 
+par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
+legend(legend=c("0<r<=1", "1<r<=2","2<r<=3","r>3"),xpd=TRUE,horiz=TRUE,inset=c(0,0),pch=1:4,bty="n",cex=1.5,x=-0.55,y=-0.85)
+legend(legend=c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),col=colors,pch=15,bty="n",cex=1.5,x=-1,y=-0.95)
 
 
