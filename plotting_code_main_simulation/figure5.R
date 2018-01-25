@@ -4,6 +4,8 @@ ALL_METHODS=c("lasso","henet","ridge","scad","stability")
 
 target.snr=2
 LIM.rmse=c(5,23)
+
+
 independence.list=c()
 pairwise.list=c()
 toeplitz.list=c()
@@ -102,26 +104,6 @@ identity.array.pairwise=identity.array
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 method_seq_all=c("lasso","lenet","henet","ridge","dantzig","scad","stability")
 library(RColorBrewer);colors_all=(brewer.pal(length(method_seq_all),"Set1"));colors_all[1]="red";colors_all[5]="black";colors_all[6]="gold3";colors_all[7]="brown"
 colors_all=colors_all[c(1,4,3,6,2,5,7)]
@@ -137,8 +119,8 @@ metric_seq=c("pauc","rmse","tpr","ppv")
 
 
 
-par(mar=c(4,3,1,1))
-par(oma=c(4,1,2,1))
+par(mar=c(3,3,1,1))
+par(oma=c(3.6,1,1,1))
 
                               for(indicator in 1:4)                     
 {
@@ -193,5 +175,5 @@ mtext(text=LETTERS[indicator],side=3,adj=0,cex=1)
 }
 
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
-legend(legend=c("0<r<=1", "1<r<=2","2<r<=3","r>3"),xpd=TRUE,horiz=TRUE,inset=c(0,0),pch=1:4,bty="n",cex=1.5,x=-0.6,y=-0.9)
-legend(legend=method_seq_all,xpd=TRUE,horiz=TRUE,inset=c(0,0),col=colors,pch=15,bty="n",cex=1.5,x=-1,y=-0.95)
+legend(legend=c("0<r<=1", "1<r<=2","2<r<=3","r>3"),xpd=TRUE,horiz=TRUE,inset=c(0,0),pch=1:4,bty="n",cex=1.5,x=-0.55,y=-0.85)
+legend(legend=c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),col=colors,pch=15,bty="n",cex=1.5,x=-1,y=-0.95)
