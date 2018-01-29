@@ -152,7 +152,5 @@ mtext(gsub(";","\n",setting_seq[2]),at=0.25,side=2,outer=T,cex=1,font=2,las=2,li
 
 
 all_methods_text=paste(method_seq,collapse=",") 
-main=sprintf("Pairwise correlation,n=%s,p=%s,s0=%s,SNR=%s",n,p,s0,SNR) 
-MAIN=main
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
 legend("bottom",c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
