@@ -64,7 +64,5 @@ if(figure.count %in% 1:4) {mtext(side=3,text=sprintf("s0=%s",s0),line=1.5,cex=1,
 
 mtext("SNR=4",at=0.27,side=3,outer=T,cex=1,font=2)  
 mtext("SNR=1",at=0.77,side=3,outer=T,cex=1,font=2)  
-main=sprintf("Independence design") 
-MAIN=main
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
 legend("bottom",c("Lasso","HENet","Ridge","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors,cex=1,lwd=3)
