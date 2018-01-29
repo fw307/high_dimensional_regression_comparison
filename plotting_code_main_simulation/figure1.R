@@ -62,5 +62,4 @@ method_all=c("Lasso","LENet","HENet","Ridge","Dantzig","SCAD","Stability")
 colors=colors_all
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
 legend("bottom",method_all,xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors,cex=0.8,lwd=3)
-par(new=FALSE)
 
