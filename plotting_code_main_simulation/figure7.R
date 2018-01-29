@@ -150,7 +150,5 @@ mtext(text=bquote(bold('p'^'B' == 100)),at=0.75,side=3,outer=T,cex=1,font=2,line
 mtext(gsub(";","\n",setting_seq[1]),at=0.75,side=2,outer=T,cex=1,font=2,las=2,line=-1.2)  
 mtext(gsub(";","\n",setting_seq[2]),at=0.25,side=2,outer=T,cex=1,font=2,las=2,line=-1.2)  
 
-
-all_methods_text=paste(method_seq,collapse=",") 
 par(fig=c(0,1,0,1),oma=c(0,0,0,0),mar=c(0,0,0,0),new=TRUE); plot(0,0,type="n",bty="n",xaxt="n",yaxt="n")
 legend("bottom",c("Lasso","HENet","Ridge","Dantzig","SCAD","Stability"),xpd=TRUE,horiz=TRUE,inset=c(0,0),lty=rep(1,4),bty="n",col=colors.all,cex=1,lwd=3)
