@@ -1,5 +1,4 @@
-Code to produce results in Empirical comparison of penalized linear regression in
-high-dimensional settings by Wang et al. 
+Code to produce results in "A large-scale comparison of high-dimensional regression methods" by Wang et al. 
 
 Overview
 R script to generate simulated data and perform linear regression using Lasso, Light elastic net, Heavy elastic net, Ridge regression, Dantzig Selector, SCAD and Stability Selection, and generate the following metrics (see paper for details):
