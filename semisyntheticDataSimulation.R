@@ -6,17 +6,17 @@
 ######2016.09.28: block size is 10, p0_B=1/5, and number of block iis p0/p0_B#################
 
 
-library(ROCR)
+#library(ROCR)
 library(glmnet)
 library(parcor)
-library(gglasso)
+#library(gglasso)
 library(monomvn)
 #library(mombf)
 library(caret)                      ###Calculate PPV; tune alpha and lambda in elastic net#####
 library(flare)                      ###Dantzig Selector######    
 library(c060)
-library(hdi)
-library(RColorBrewer)
+#library(hdi)
+#library(RColorBrewer)
 library(ncvreg)
 
 niter=64
