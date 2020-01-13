@@ -14,6 +14,9 @@ The scenarios included in the simulation study are contained in the text files [
 
 Note that the synthetic data scenario file [`syntheticDataScenarios.txt`](syntheticDataScenarios.txt) also includes the Toeplitz correlation design simulation scenarios from the "Additional investigations" section of the paper (Section 4.1). Toeplitz design scenarios can also be simulated using the script [`syntheticDataSimulation.R`](syntheticDataSimulation.R).
 
+##### Covariate data for the semisynthetic analysis
+For the semisynthetic data simulations, we used gene expression data from [The Cancer Genome Atlas (TCGA) ovarian cancer study](https://doi.org/10.1038/nature10166) as covariates. In particular, we used a dataset as provided in the Supplementary Appendix of [Tucker et al. (2014)](https://doi.org/10.1158/1078-0432.CCR-14-0445): an RData file called `tcgaExpression.RData` which is contained in a zip file called `rDataObjects.zip`. This zip file can be downloaded from [https://bioinformatics.mdanderson.org/Supplements/ResidualDisease](https://bioinformatics.mdanderson.org/Supplements/ResidualDisease/). For convenience, we also make the RData file available in this repository.
+
 ##### Required installs:
 ```
 install.packages('MASS', 'glmnet', 'parcor', 'ncvreg', 'monomvn'.
