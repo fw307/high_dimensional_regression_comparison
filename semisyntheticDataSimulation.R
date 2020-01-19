@@ -38,12 +38,6 @@ if (s0B>0 & s0/s0B*pB>p) {
 
 
 
-
-
-
-
-
-
 data_generation  <- function(n, p, s0, SNR, corDesign, pB, s0B) {
 
   ###############################################
@@ -121,14 +115,6 @@ pauc.scad=c(); rmse.scad=c(); tpr.scad=c(); ppv.scad=c()
 pauc.ridge=c(); rmse.ridge=c(); tpr.ridge=c(); ppv.ridge=c()
 pauc.stability=c(); rmse.stability=c(); tpr.stability=c(); ppv.stability=c()
 pauc.adalasso=c(); rmse.adalasso=c(); tpr.adalasso=c(); ppv.adalasso=c()
-
-
-
-
-
-
-
-
 
 
 
