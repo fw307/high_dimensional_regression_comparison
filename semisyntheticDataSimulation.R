@@ -1,27 +1,15 @@
-######################################2016/07/29###################################
-#############Lasso, Enet, ridge, SCAD, stability#################################################################
-
-
-#############Layout: n=200: first row p0=10, second row p0=20, within each row 4 metrics, x-axis 3 SNR's, each sub-figure has 2 parts: p0B=1/5############
-######2016.09.28: block size is 10, p0_B=1/5, and number of block iis p0/p0_B#################
-
-
-#library(ROCR)
+library(ROCR)
 library(glmnet)
 library(parcor)
-#library(gglasso)
 library(monomvn)
-#library(mombf)
 library(caret)                      ###Calculate PPV; tune alpha and lambda in elastic net#####
 library(flare)                      ###Dantzig Selector######    
 library(c060)
-#library(hdi)
-#library(RColorBrewer)
+library(hdi)
 library(ncvreg)
 
-niter=64
 
-pB_seq=c(0,10,20)
+niter=64
 metric_seq=c("pauc","rmse","tpr","ppv")
 METHODS=c("lasso","henet","ridge","scad","stability","adalasso")   
 
@@ -48,16 +36,16 @@ if (s0B>0 & s0/s0B*pB>p) {
 
 ##########################################
 
-pauc.lasso=c(); rmse.lasso=c(); tpr.lasso=c(); ppv.lasso=c()
-pauc.henet=c(); rmse.henet=c(); tpr.henet=c(); ppv.henet=c()
-pauc.scad=c(); rmse.scad=c(); tpr.scad=c(); ppv.scad=c()
-pauc.ridge=c(); rmse.ridge=c(); tpr.ridge=c(); ppv.ridge=c()
-pauc.stability=c(); rmse.stability=c(); tpr.stability=c(); ppv.stability=c()
-pauc.adalasso=c(); rmse.adalasso=c(); tpr.adalasso=c(); ppv.adalasso=c()
 
-for(iter in 1:niter)
-{
-  
+
+
+
+
+
+
+
+data_generation  <- function(n, p, s0, SNR, corDesign, pB, s0B) {
+
   ###############################################
   # subsample covariate data and generate outcome variable
   ###############################################
@@ -66,9 +54,6 @@ for(iter in 1:niter)
   other.genes=setdiff(1:ncol(TCGA),genes)
   tcga=TCGA[,genes]
   XR=tcga
-  
-  
-  
   
   if(s0B==0)
   {signal.positions=sample(1:p,size=s0,replace=FALSE)}
@@ -123,8 +108,38 @@ for(iter in 1:niter)
   Y=Y0+e.training; Y=Y-mean(Y)
   Y0.test=Xr.test%*%beta0
   Y.test=Y0.test+e.test; Y.test=Y.test-mean(Y.test)
-  xlim=c(0,50/(p-s0))
+
+  result=list()
+  result$Xr=Xr; result$Y=Y; result$Xr.test=Xr.test; result$Y.test=Y.test; result$beta0=beta0; result$sigma=sigma
+  result
+}
+
+
+pauc.lasso=c(); rmse.lasso=c(); tpr.lasso=c(); ppv.lasso=c()
+pauc.henet=c(); rmse.henet=c(); tpr.henet=c(); ppv.henet=c()
+pauc.scad=c(); rmse.scad=c(); tpr.scad=c(); ppv.scad=c()
+pauc.ridge=c(); rmse.ridge=c(); tpr.ridge=c(); ppv.ridge=c()
+pauc.stability=c(); rmse.stability=c(); tpr.stability=c(); ppv.stability=c()
+pauc.adalasso=c(); rmse.adalasso=c(); tpr.adalasso=c(); ppv.adalasso=c()
+
+
+
+
+
+
+
+
+
+
+
+for(iter in 1:niter)
+{
   
+  data = data_generation(n, p, s0, SNR, corDesign, pB, s0B)
+  Xr = data$Xr; Y = data$Y; Xr.test = data$Xr.test; Y.test = data$Y.test; beta0 = data$beta0
+  xlim=c(0,50/(p-s0))
+
+
   ###################################################
   # run methods
   ###################################################
