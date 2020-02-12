@@ -297,7 +297,6 @@ for(iter in 1:niter)
   
   
   ####################################Adalasso#######################################
-  #https://rpubs.com/kaz_yos/alasso
   
   ridge1_cv=cv.glmnet(x = Xr, y = Y, alpha = 0)
   best_ridge_coef <- as.numeric(coef(ridge1_cv, s = ridge1_cv$lambda.min))[-1]
