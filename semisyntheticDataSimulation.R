@@ -2,8 +2,8 @@ library(ROCR)
 library(glmnet)
 library(parcor)
 library(monomvn)
-library(caret)                      ###Calculate PPV; tune alpha and lambda in elastic net#####
-library(flare)                      ###Dantzig Selector######    
+library(caret)                       
+library(flare)                      
 library(c060)
 library(hdi)
 library(ncvreg)
@@ -15,7 +15,7 @@ METHODS=c("lasso","henet","ridge","scad","stability","adalasso")
 
 load("tcgaExpression.RData")
 TCGA=tcga=t(tcgaExpression)
-N=nrow(tcga)    ############The number of samples in the TCGA dataset########
+N=nrow(tcga)    
 
 
 ################################################
@@ -67,8 +67,6 @@ data_generation  <- function(n, p, s0, SNR, corDesign, pB, s0B) {
     for(block.iter in 1:nblock)
     {
       cor.xx.tmp=abs(cor.xx); diag(cor.xx.tmp)=0
-      #sub.all.potential.group=which(apply(cor.xx.tmp,1,max)>0.5)
-      #sub.core=sample(sub.all.potential.group,size=1)
       sub.core=which.max(apply(cor.xx.tmp,1,max))
       
       
@@ -82,7 +80,7 @@ data_generation  <- function(n, p, s0, SNR, corDesign, pB, s0B) {
     signal.positions=c(); 
     for(block.id in 1:nblock)
     {block=get(sprintf("block%s",block.id)); signal.positions=c(signal.positions,block[1:s0B])}
-  }   #######End of if(s0B>0)#########
+  }    
   
   
   
@@ -186,7 +184,7 @@ for(iter in 1:niter)
       idx=max(which(solution_path[var_idx,]==0))
       if(idx!=length(cv$lambda)) {idx=idx+1; score[var_idx]=cv$lambda[idx]}
     }
-  }    #####End of for(var_idx in 1:p)######
+  }    
   pred=prediction(abs(score),ifelse(beta0!=0,1,0))
   auc.tmp=performance(pred,"auc",fpr.stop=xlim[2])
   
@@ -307,7 +305,7 @@ for(iter in 1:niter)
   
   
   solution_path=Matrix(alasso1$beta,sparse=TRUE)
-  #colnames(solution_path)=cv$lambda
+
   
   score=rep(0,p)
   for(var_idx in 1:p)
@@ -333,4 +331,4 @@ for(iter in 1:niter)
   
   
   #######################################################################################################
-} #######End of for(iter in 1:niter)######### 
+}  
